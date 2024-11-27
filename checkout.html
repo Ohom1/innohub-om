@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Secure Checkout</h1>
+    <p>Complete your purchase in a few simple steps.</p>
+  </header>
+
+  <main class="checkout">
+    <!-- Course Selection -->
+    <section class="course-selection">
+      <h2>Select Your Course</h2>
+      <form id="checkout-form" action="javascript:void(0);" method="POST" class="course-selection-form">
+        <div class="form-group">
+          <label for="course">Choose a Course</label>
+          <select id="course" name="course" required>
+            <option value="development-mastery">Development Mastery</option>
+            <option value="seo-optimization">SEO Optimization</option>
+            <option value="digital-marketing">Digital Marketing</option>
+            <option value="email-marketing">Email Marketing</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" placeholder="Enter your billing address" rows="3" required></textarea>
+        </div>
+
+        <!-- Shipping Method -->
+        <div class="form-group">
+          <label for="shipping-method">Select Shipping Method</label>
+          <select id="shipping-method" name="shipping-method" required>
+            <option value="standard">Standard Shipping (7-10 days)</option>
+            <option value="express">Express Shipping (3-5 days)</option>
+            <option value="overnight">Overnight Shipping (1-2 days)</option>
+          </select>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-group">
+          <label for="payment-method">Choose a payment method</label>
+          <select id="payment-method" name="payment-method" required>
+            <option value="credit-card">Credit/Debit Card</option>
+            <option value="upi">UPI</option>
+            <option value="net-banking">Net Banking</option>
+            <option value="wallet">Digital Wallets</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="submit-btn">Complete Payment</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modal for Confirmation -->
+  <div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Thank You for Your Purchase!</h2>
+      <p>Your order has been successfully placed. You will receive an email confirmation shortly.</p>
+      <button class="modal-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Your Course Provider. All rights reserved.</p>
+  </footer>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
+
+<style>
+    /* General Styles */
+/* General Styles */
+/* Basic Layout Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #ff5e5e;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+p {
+  font-size: 24px;
+}
+
+/* Checkout Form Styles */
+.checkout {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.course-selection {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 60%;
+}
+
+h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 18px;
+  color: #333;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button.submit-btn {
+  background-color: #ff5e5e;
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+}
+
+button.submit-btn:hover {
+  background-color: #f53b57;
+}
+
+/* Shipping and Payment Method Styles */
+select {
+  font-size: 16px;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-btn {
+  background-color: #ff5e5e;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-btn:hover {
+  background-color: #f53b57;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkout {
+    padding: 20px;
+  }
+
+  .course-selection {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+
+  .submit-btn {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  .footer {
+    font-size: 16px;
+  }
+}
+
+
+
+</style>
+<script>
+    // Get the modal
+var modal = document.getElementById("confirmation-modal");
+
+// Get the form
+var form = document.getElementById("checkout-form");
+
+// When the form is submitted
+form.onsubmit = function(event) {
+  event.preventDefault(); // Prevent form from actually submitting
+
+  // Display the modal
+  modal.style.display = "block";
+};
+
+// Close the modal when the user clicks on the "x" (close) button
+function closeModal() {
+  modal.style.display = "none";
+}
+
+</script>
